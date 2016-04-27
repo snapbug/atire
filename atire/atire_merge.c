@@ -513,8 +513,8 @@ for (engine = 0; engine < number_engines; engine++)
 	iterators[engine] = new ANT_btree_iterator(search_engines[engine]);
 	leaves[engine] = new ANT_search_engine_btree_leaf;
 	
-	if (search_engines[engine]->quantized())
-		exit(printf("Cannot merge quantized indexes (%s is quantized)\n", argv[engine + first_param]));
+	if (search_engines[engine]->quantized() && number_engines != 1)
+		exit(printf("Cannot merge multiple quantized indexes (%s is quantized)\n", argv[engine + first_param]));
 	
 	this_trimpoint = search_engines[engine]->get_variable("~trimpoint");
 	trimpoints[engine] = this_trimpoint ? this_trimpoint : LONG_MAX;

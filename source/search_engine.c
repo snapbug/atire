@@ -286,7 +286,7 @@ stem_buffer = (ANT_weighted_tf *)memory->malloc(stem_buffer_length_in_bytes = (s
 if ((which_stemmer = get_variable("~stemmer")) != 0)
 	{
 	stemmer = ANT_stemmer_factory::get_core_stemmer(which_stemmer);
-	printf("This index was stemmed using %s, search terms will be stemmed\n", stemmer->name());
+	/* printf("This index was stemmed using %s, search terms will be stemmed\n", stemmer->name()); */
 	}
 
 is_quantized = get_variable("~quantized");
