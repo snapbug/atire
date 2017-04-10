@@ -611,7 +611,7 @@ else
 		}
 
 	now = stats.start_timer();
-	index->serialise();
+	index->serialise(first_param, argv);
 	stats.add_disk_output_time(stats.stop_timer(now));
 	index->text_render(param_block.statistics);
 	}

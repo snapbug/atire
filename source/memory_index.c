@@ -1451,7 +1451,7 @@ void ANT_memory_index::allocate_decompress_buffer(void)
 	ANT_MEMORY_INDEX::SERIALISE()
 	-----------------------------
 */
-long ANT_memory_index::serialise(void)
+long ANT_memory_index::serialise(int argc, char **argv)
 {
 uint8_t zero = 0;
 int32_t length_of_longest_term = 0;
@@ -1477,6 +1477,16 @@ if (index_file == NULL)
 for (unsigned long long i = 0; i < HASH_TABLE_SIZE; i++)
 	printf("%lu\n", strcmp_calls[i]);
 #endif
+
+/*
+	Write out the parameters used to create this index so that a `head -n 2` will reveal them
+*/
+for (int i = 1; i < argc; i++)
+	{
+	index_file->write((unsigned char *)(argv[i]), strlen(argv[i]));
+	index_file->write(" ", 1);
+	}
+index_file->write("\n", 1);
 
 allocate_decompress_buffer();
 
