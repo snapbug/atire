@@ -1,9 +1,9 @@
 
 ifeq ($(USE_GCC_VERBOSE), 1)
-	CC = gcc
+	CC = gcc -std=gnu89
 	PUT_FILENAME =
 else
-	CC = @gcc
+	CC = @gcc -std=gnu89
 	PUT_FILENAME = @echo $<
 endif
 
